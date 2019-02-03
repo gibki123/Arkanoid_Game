@@ -9,7 +9,7 @@ public class BlockSpawning : MonoBehaviour {
 
     private int collisionQunatity;
 
-    private List<GameObject> spawnedBlocks;
+    public List<GameObject> spawnedBlocks;
 
     private float blocksDistance;
 
@@ -17,27 +17,23 @@ public class BlockSpawning : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
+        spawnedBlocks = new List<GameObject>();
         collisionQunatity = 5;
         blocksDistance = 0.5f;
     }
 
 	void Start ()
-    {
-        
+    {       
         for(int i = 0;i<13; i++)
         {          
             for(int j = 0; j<5;j++)
             {
-                obj = Pooling.Instance.SpawnFromPool("block", vec);
-                if(obj!=null)
-                spawnedBlocks.Add(obj);     
-
+                spawnedBlocks.Add(Pooling.Instance.SpawnFromPool("block", vec));
                 vec.y -= 0.5f;       
             }
             vec.y = 5.5f;
             vec.x += 1.5f;
-        }
-       
+        }      
 	}
 	
 	// Update is called once per frame
