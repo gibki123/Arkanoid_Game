@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-    Vector3 vector;
+    private Vector3 playerPosition = new Vector3 (0,-5,0);
 
     [SerializeField]
     [Range(0,100)]
     float speed;
-    Rigidbody rig;
+    float posx;
 	// Use this for initialization
 	void Start () {
-        rig = gameObject.GetComponent<Rigidbody>();
 	}
+
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetKey("left"))            
-            gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
-        if (Input.GetKey("right"))
-            gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+       posx = (Input.GetAxis("Horizontal") * Time.deltaTime * speed) + transform.position.x;
+       playerPosition = new Vector3(Mathf.Clamp(posx,-8.75f,8.75f),-5,0);
+       transform.position = playerPosition;
     }
 
 }

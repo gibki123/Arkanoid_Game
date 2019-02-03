@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class BallCollision : MonoBehaviour {
 
-    Rigidbody rd;
+    [SerializeField]
+    [Range(0,1000)]
+    private float added_force;
 
+    Rigidbody rb;
+    private bool firstclick;
+
+    public static int collisionCounter;
 	// Use this for initialization
+    void Awake ()
+    {
+        collisionCounter = 0;
+        firstclick = true;
+        rb = GetComponent<Rigidbody>();
+    }
 	void Start () {
-        rd = GetComponent<Rigidbody>();
+        
+      
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(firstclick && Input.GetButtonDown("Fire1"))
+        {         
+            transform.parent = null; 
+            firstclick = false;
+            rb.isKinematic = false;
+            rb.AddForce(new Vector3(added_force, added_force / 2, 0));
+        }
 	}
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "racket" )
-        rd.velocity = new Vector3(0, 8, 0);
-        if(collision.transform.tag == "block" )
-        rd.velocity = new Vector3(0, -8, 0);
+        if(collision.transform.tag == "racket")
+        {
+            collisionCounter++;
+            Debug.Log(collisionCounter);
+        }
     }
 }
