@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Disabling : MonoBehaviour {
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.Play();
         Pooling.Instance.DisableFromPool(gameObject);
     }
 }

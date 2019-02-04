@@ -37,23 +37,6 @@ public class Pooling : MonoBehaviour {
             poolDictionary.Add(pool.tag, objects);
         }
     }
-    //void start()
-    //{
-    //    poolDictionary = new Dictionary<string, Queue<GameObject>>();
-    //    foreach (Pool pool in pools)
-    //    {
-    //        Queue<GameObject> objects = new Queue<GameObject>();
-
-    //        for (int i = 0; i < pool.size; i++)
-    //        {
-    //            GameObject obj = Instantiate(pool.prefab);
-    //            obj.SetActive(false);
-    //            objects.Enqueue(obj);
-    //            Debug.Log("Spawn");
-    //        }
-    //        poolDictionary.Add(pool.tag, objects);
-    //    }
-    //}
 
     public GameObject SpawnFromPool(string tag, Vector3 position)
     {

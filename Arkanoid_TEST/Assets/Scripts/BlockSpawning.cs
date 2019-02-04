@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class BlockSpawning : MonoBehaviour {
 
-    [SerializeField]
-    Vector3 vec;
-
     private int collisionQunatity;
+    private float blocksDistance;
+    private GameObject obj;
+    private float positionX = -9;
+    private float positionY = 5.5f;
+
+    [SerializeField]
+    private Vector3 vec;
 
     public List<GameObject> spawnedBlocks;
 
-    private float blocksDistance;
-
-    private GameObject obj;
-    // Use this for initialization
-    void Awake()
+    private void Awake()
     {
+        vec = new Vector3(positionX,positionY, 0);
         spawnedBlocks = new List<GameObject>();
-        collisionQunatity = 5;
-        blocksDistance = 0.5f;
+        collisionQunatity = 10;
+        blocksDistance = -0.5f;
     }
 
-	void Start ()
+	private void Start ()
     {       
         for(int i = 0;i<13; i++)
         {          
@@ -33,20 +34,36 @@ public class BlockSpawning : MonoBehaviour {
             }
             vec.y = 5.5f;
             vec.x += 1.5f;
-        }      
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        }
+        vec = new Vector3(positionX, positionY, 0);
+    }
+
+	private void Update () {
+
         if(BallCollision.collisionCounter == collisionQunatity)
         {
             MoveDownBlocks();
-
+            SpawnNewBlocks();
+            BallCollision.collisionCounter = 0;
         }
-		
-	}
+        if(BallCollision.powerfulPaddleCollision == true)
+        {
+            foreach(var item in spawnedBlocks)
+            {
+                item.GetComponent<Collider>().isTrigger = true;
+            }
+        }
+        if (BallCollision.powerfulPaddleCollision == false)
+        {
+            foreach (var item in spawnedBlocks)
+            {
+                item.GetComponent<Collider>().isTrigger = false;
+            }
+        }
+
+    }
     
-    void MoveDownBlocks()
+    public void MoveDownBlocks()
     {
         foreach(var item in spawnedBlocks)
         {
@@ -55,8 +72,14 @@ public class BlockSpawning : MonoBehaviour {
             item.transform.position = templ;
         }
     }
-    void SpawnNewBlocks()
-    {
 
+    public void SpawnNewBlocks()
+    {
+        for(int i = 0;i<13; i++)
+        {
+            spawnedBlocks.Add(Pooling.Instance.SpawnFromPool("block", vec));
+            vec.x += 1.5f;
+        }
+        vec = new Vector3(positionX, positionY, 0);
     }
 }
