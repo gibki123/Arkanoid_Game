@@ -6,7 +6,6 @@ public class BlockSpawning : MonoBehaviour {
 
     private int collisionQunatity;
     private float blocksDistance;
-    private GameObject obj;
     private float positionX = -9;
     private float positionY = 5.5f;
 

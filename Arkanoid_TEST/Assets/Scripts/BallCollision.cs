@@ -18,7 +18,13 @@ public class BallCollision : MonoBehaviour
 
     [SerializeField]
     [Range(0, 1000)]
-    private float added_force;
+    private int addedForceMin;
+
+    [SerializeField]
+    [Range(0, 1000)]
+    private int addedForceMax;
+
+    private int force;
 
     private void Awake()
     {
@@ -36,12 +42,11 @@ public class BallCollision : MonoBehaviour
         if (firstclick && Input.GetButtonDown("Fire1"))
         {
             //TODO Add randomness of force from paddle
-            int randomDegrees = Random.RandomRange(-45, 45);
-            Mathf.Sin()
+            force = Random.Range(addedForceMin,addedForceMax);
             transform.parent = null;
             firstclick = false;
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(added_force, added_force / 2, 0));
+            rb.AddForce(new Vector3(addedForceMax-force,force, 0));
         }
     }
 
@@ -66,7 +71,7 @@ public class BallCollision : MonoBehaviour
                 {
                     collisionCounter++;
                     powerfulPaddleCollision = true;
-                    rb.AddForce(new Vector3(0, added_force / 3, 0));
+                    rb.AddForce(new Vector3(addedForceMax-force,force, 0));
                 } else
                 {
                     TriggerUpgrade.forceUpgrade = false;

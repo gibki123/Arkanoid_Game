@@ -32,6 +32,7 @@ public class Pooling : MonoBehaviour {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
                 objects.Enqueue(obj);
+                obj.transform.SetParent(transform);
                 //Debug.Log("Spawn");
             }
             poolDictionary.Add(pool.tag, objects);

@@ -14,7 +14,6 @@ public class LiveLoosing : MonoBehaviour
 
     private Rigidbody rb;
 
-    // Update is called once per frame
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

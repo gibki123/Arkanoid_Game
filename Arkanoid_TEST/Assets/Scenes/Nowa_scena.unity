@@ -1181,6 +1181,16 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 713153101}
+    - target: {fileID: 347241612009866411, guid: c826504720f1080459315556f1d25b7b,
+        type: 3}
+      propertyPath: addedForceMin
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 347241612009866411, guid: c826504720f1080459315556f1d25b7b,
+        type: 3}
+      propertyPath: addedForceMax
+      value: 900
+      objectReference: {fileID: 0}
     - target: {fileID: 990969724156322416, guid: c826504720f1080459315556f1d25b7b,
         type: 3}
       propertyPath: livesText
