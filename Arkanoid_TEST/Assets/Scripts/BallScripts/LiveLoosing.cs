@@ -30,6 +30,7 @@ public class LiveLoosing : MonoBehaviour
             rb.velocity = new Vector3(0, 0, 0);
             RestartPosition();
             BallCollision.firstclick = true;
+            UpgradesHandling.Instance.AllUpgradesEnd();
         }
         if(numberOfLives == 0)
         {
@@ -40,7 +41,7 @@ public class LiveLoosing : MonoBehaviour
     public void RestartPosition()
     {
         transform.SetParent(GameObject.Find("Paddle").transform);
-        transform.parent.position = new Vector3(0, -5.5f, 0);
-        transform.position = new Vector3(0,-5f,0);
+        transform.parent.position = new Vector3(0, -6.5f, 0);
+        transform.position = new Vector3(0,-6f,0);
     }
 }

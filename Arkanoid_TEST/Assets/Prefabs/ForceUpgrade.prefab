@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3551407585481210996}
   - component: {fileID: 5776288156361235421}
   - component: {fileID: 1235153183526766222}
+  - component: {fileID: 6196470281647250943}
   - component: {fileID: 2766713624421726114}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: ForceUpgrade
   m_TagString: upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,6 +94,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6196470281647250943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852885798678735051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b393e35568f6830458b58739159e48d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &2766713624421726114
 Rigidbody:
   m_ObjectHideFlags: 0

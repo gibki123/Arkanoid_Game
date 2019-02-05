@@ -12,13 +12,13 @@ public class BlockSpawning : MonoBehaviour {
     [SerializeField]
     private Vector3 vec;
 
-    public List<GameObject> spawnedBlocks;
+    public static List<GameObject> spawnedBlocks;
 
     private void Awake()
     {
         vec = new Vector3(positionX,positionY, 0);
         spawnedBlocks = new List<GameObject>();
-        collisionQunatity = 10;
+        collisionQunatity = 5;
         blocksDistance = -0.5f;
     }
 
@@ -37,29 +37,14 @@ public class BlockSpawning : MonoBehaviour {
         vec = new Vector3(positionX, positionY, 0);
     }
 
-	private void Update () {
-
-        if(BallCollision.collisionCounter == collisionQunatity)
+    private void Update()
+    {
+        if (BallCollision.collisionCounter == collisionQunatity)
         {
             MoveDownBlocks();
             SpawnNewBlocks();
             BallCollision.collisionCounter = 0;
         }
-        if(BallCollision.powerfulPaddleCollision == true)
-        {
-            foreach(var item in spawnedBlocks)
-            {
-                item.GetComponent<Collider>().isTrigger = true;
-            }
-        }
-        if (BallCollision.powerfulPaddleCollision == false)
-        {
-            foreach (var item in spawnedBlocks)
-            {
-                item.GetComponent<Collider>().isTrigger = false;
-            }
-        }
-
     }
     
     public void MoveDownBlocks()

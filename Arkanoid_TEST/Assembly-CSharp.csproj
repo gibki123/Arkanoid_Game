@@ -61,18 +61,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BallCollision.cs" />
-    <Compile Include="Assets\Scripts\BlockSpawning.cs" />
-    <Compile Include="Assets\Scripts\CapsulePick.cs" />
-    <Compile Include="Assets\Scripts\Disabling.cs" />
-    <Compile Include="Assets\Scripts\LiveLoosing.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\NoButtonScript.cs" />
-    <Compile Include="Assets\Scripts\Pooling.cs" />
-    <Compile Include="Assets\Scripts\Scoring.cs" />
+    <Compile Include="Assets\Scripts\BallScripts\BallCollision.cs" />
+    <Compile Include="Assets\Scripts\BallScripts\LiveLoosing.cs" />
+    <Compile Include="Assets\Scripts\BallScripts\UpgradesHandling.cs" />
+    <Compile Include="Assets\Scripts\BlockScripts\DisablingBlock.cs" />
+    <Compile Include="Assets\Scripts\ButtonScripts\NoButtonScript.cs" />
+    <Compile Include="Assets\Scripts\ButtonScripts\YesButtonScript.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\ObjectHandlerScripts\BlockSpawning.cs" />
+    <Compile Include="Assets\Scripts\ObjectHandlerScripts\UpgradeSpawning.cs" />
+    <Compile Include="Assets\Scripts\PaddleScripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\PoolerScripts\Pooling.cs" />
     <Compile Include="Assets\Scripts\TriggerUpgrade.cs" />
-    <Compile Include="Assets\Scripts\UpgradeSpawning.cs" />
-    <Compile Include="Assets\Scripts\YesButtonScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Rafał/Arkanoid_Game/Arkanoid_TEST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

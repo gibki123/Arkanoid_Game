@@ -17,7 +17,7 @@ public class Pooling : MonoBehaviour {
     private List<Pool> pools;
 
     [SerializeField]
-    private Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     public void Awake()
     {
@@ -63,9 +63,6 @@ public class Pooling : MonoBehaviour {
         }
         
     }
-    
-
-    
 
     public void DisableFromPool(GameObject obj)
     {

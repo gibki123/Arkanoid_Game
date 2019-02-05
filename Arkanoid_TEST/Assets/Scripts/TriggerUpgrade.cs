@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class TriggerUpgrade : MonoBehaviour
 {
-    public static bool forceUpgrade;
-
-    private void Start()
-    {
-        forceUpgrade = false;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "upgrade")
+        if (other.transform.tag == "racket")
         {
-            Pooling.Instance.DisableFromPool(other.gameObject);
-            forceUpgrade = true;
+            Pooling.Instance.DisableFromPool(gameObject);
+            UpgradesHandling.forceUpgrade = true;
+            other.gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        
     }
 }

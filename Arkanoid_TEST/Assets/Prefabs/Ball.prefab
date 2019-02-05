@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 8721938051615021974}
   - component: {fileID: 347241612009866411}
   - component: {fileID: 990969724156322416}
+  - component: {fileID: 1772433870988789267}
   m_Layer: 0
-  m_Name: Ball 1
+  m_Name: Ball
   m_TagString: upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7984bac34683a62409f606dff3dc94df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  added_force: 600
+  scoreText: {fileID: 0}
+  addedForceMin: 0
+  addedForceMax: 0
 --- !u!114 &990969724156322416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +241,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesText: {fileID: 0}
+--- !u!114 &1772433870988789267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721938051615021972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef5707f1a56de64dbfd45d6aa2aa559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

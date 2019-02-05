@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class BallCollision : MonoBehaviour
 {
     public static bool firstclick;
-    public static bool powerfulPaddleCollision;
     public static int collisionCounter;
 
     private AudioSource audio;
@@ -28,7 +27,6 @@ public class BallCollision : MonoBehaviour
 
     private void Awake()
     {
-        powerfulPaddleCollision = false;
         score = 0;
         audio = GetComponent<AudioSource>();
         collisionCounter = 0;
@@ -36,23 +34,22 @@ public class BallCollision : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    
-
     private void Update() {
         if (firstclick && Input.GetButtonDown("Fire1"))
         {
-            //TODO Add randomness of force from paddle
             force = Random.Range(addedForceMin,addedForceMax);
             transform.parent = null;
             firstclick = false;
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(addedForceMax-force,force, 0));
+            rb.AddForce(new Vector3(addedForceMax-force,force, 0));        
         }
+        Vector3 velocity = rb.velocity;
+        Debug.Log(velocity);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (TriggerUpgrade.forceUpgrade == false)
+        if (UpgradesHandling.forceUpgrade == false)
         {
             if (collision.transform.tag == "racket")
             {
@@ -62,21 +59,19 @@ public class BallCollision : MonoBehaviour
             {
                 audio.Play();
                 AddScore();
+                Pooling.Instance.DisableFromPool(collision.gameObject);
             }
         } else
         {
             if (collision.transform.tag == "racket")
             {
-                if (powerfulPaddleCollision == false)
-                {
                     collisionCounter++;
-                    powerfulPaddleCollision = true;
-                    rb.AddForce(new Vector3(addedForceMax-force,force, 0));
-                } else
-                {
-                    TriggerUpgrade.forceUpgrade = false;
-                    powerfulPaddleCollision = false;
-                }
+            }
+            if (collision.transform.tag == "block")
+            {
+                audio.Play();
+                AddScore();
+                Pooling.Instance.DisableFromPool(collision.gameObject);
             }
         }
     }
