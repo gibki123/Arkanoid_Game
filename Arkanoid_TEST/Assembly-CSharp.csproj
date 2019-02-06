@@ -72,7 +72,9 @@
     <Compile Include="Assets\Scripts\ObjectHandlerScripts\UpgradeSpawning.cs" />
     <Compile Include="Assets\Scripts\PaddleScripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PoolerScripts\Pooling.cs" />
-    <Compile Include="Assets\Scripts\TriggerUpgrade.cs" />
+    <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerForceUpgrade.cs" />
+    <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerStickUpgrade.cs" />
+    <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerWidthUpgrade.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Rafał/Arkanoid_Game/Arkanoid_TEST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

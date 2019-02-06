@@ -6,8 +6,11 @@ TagManager:
   tags:
   - block
   - racket
-  - upgrade
   - ball
+  - forceUpgrade
+  - widthUpgrade
+  - upgrade
+  - stickUpgrade
   layers:
   - Default
   - TransparentFX

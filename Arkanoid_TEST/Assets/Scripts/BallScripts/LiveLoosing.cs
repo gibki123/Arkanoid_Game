@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class LiveLoosing : MonoBehaviour
 {
-
     private int numberOfLives;
 
     [SerializeField]
@@ -29,8 +28,8 @@ public class LiveLoosing : MonoBehaviour
             rb.isKinematic = true;
             rb.velocity = new Vector3(0, 0, 0);
             RestartPosition();
-            BallCollision.firstclick = true;
             UpgradesHandling.Instance.AllUpgradesEnd();
+            BallCollision.firstBallShot = true;          
         }
         if(numberOfLives == 0)
         {
@@ -40,8 +39,10 @@ public class LiveLoosing : MonoBehaviour
 
     public void RestartPosition()
     {
-        transform.SetParent(GameObject.Find("Paddle").transform);
+        GameObject paddle = GameObject.Find("Paddle");
+        transform.SetParent(paddle.transform);
         transform.parent.position = new Vector3(0, -6.5f, 0);
-        transform.position = new Vector3(0,-6f,0);
+        transform.position = new Vector3(0, -6f, 0);
+        paddle.GetComponent<Renderer>().material.color = Color.white;
     }
 }

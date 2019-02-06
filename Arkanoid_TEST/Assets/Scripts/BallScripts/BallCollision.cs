@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class BallCollision : MonoBehaviour
 {
-    public static bool firstclick;
+    public static bool firstBallShot;
     public static int collisionCounter;
 
     private AudioSource audio;
@@ -25,54 +25,60 @@ public class BallCollision : MonoBehaviour
 
     private int force;
 
+    private Vector3 paddleDimensions;
+    private Vector3 paddlePosition;
+
     private void Awake()
     {
         score = 0;
         audio = GetComponent<AudioSource>();
         collisionCounter = 0;
-        firstclick = true;
+        firstBallShot = true;
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update() {
-        if (firstclick && Input.GetButtonDown("Fire1"))
+        if (firstBallShot && Input.GetButtonDown("Fire1"))
         {
             force = Random.Range(addedForceMin,addedForceMax);
             transform.parent = null;
-            firstclick = false;
+            firstBallShot = false;
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(addedForceMax-force,force, 0));        
+            rb.AddForce(new Vector3((addedForceMax + addedForceMin)-force,force, 0));        
         }
         Vector3 velocity = rb.velocity;
-        Debug.Log(velocity);
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        if (UpgradesHandling.forceUpgrade == false)
+    {     
+        if (collision.transform.tag == "racket")
         {
-            if (collision.transform.tag == "racket")
+            collisionCounter++;            
+            Vector3 collisionPosition = collision.contacts[0].point;
+            paddleDimensions = GameObject.FindGameObjectWithTag("racket").transform.localScale;
+            paddlePosition = GameObject.FindGameObjectWithTag("racket").transform.position;
+            Vector3 centerDistance = paddlePosition - collisionPosition;
+            float centerDistancePercentage = centerDistance.x / (paddleDimensions.x/2);
+            if(collisionPosition.y - paddlePosition.y > 0)
             {
-                collisionCounter++;
-            }
-            if (collision.transform.tag == "block")
-            {
-                audio.Play();
-                AddScore();
-                Pooling.Instance.DisableFromPool(collision.gameObject);
-            }
-        } else
+                rb.velocity = new Vector3(0, 0, 0);
+                if (centerDistancePercentage < -0.50f)
+                {
+                    rb.AddForce(addedForceMax - addedForceMin, addedForceMax, 0);
+                } else if (centerDistancePercentage > 0.50f)
+                {
+                    rb.AddForce(-(addedForceMax - addedForceMin), addedForceMax, 0);
+                } else
+                {
+                    rb.AddForce(0, Mathf.Sqrt(addedForceMax * addedForceMax + addedForceMin * addedForceMin), 0);
+                }
+            }                        
+        }
+        if (collision.transform.tag == "block")
         {
-            if (collision.transform.tag == "racket")
-            {
-                    collisionCounter++;
-            }
-            if (collision.transform.tag == "block")
-            {
-                audio.Play();
-                AddScore();
-                Pooling.Instance.DisableFromPool(collision.gameObject);
-            }
+            audio.Play();
+            AddScore();
+            Pooling.Instance.DisableFromPool(collision.gameObject);
         }
     }
 
