@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour {
 	void Update ()
     {
        posx = (Input.GetAxis("Horizontal") * Time.deltaTime * speed) + transform.position.x;
-       playerPosition = new Vector3(Mathf.Clamp(posx,-8.75f,8.75f),-6.5f,0);
+       playerPosition = new Vector3(Mathf.Clamp(posx,-10.5f+ (transform.localScale.x / 2), 10.5f-(transform.localScale.x/2)),-6.5f,0);
        transform.position = playerPosition;
     }
 }

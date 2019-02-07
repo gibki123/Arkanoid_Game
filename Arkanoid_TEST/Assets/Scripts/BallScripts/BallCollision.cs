@@ -30,6 +30,7 @@ public class BallCollision : MonoBehaviour
 
     private void Awake()
     {
+        UpgradesHandling.forceSum = addedForceMax + addedForceMin;
         score = 0;
         audio = GetComponent<AudioSource>();
         collisionCounter = 0;

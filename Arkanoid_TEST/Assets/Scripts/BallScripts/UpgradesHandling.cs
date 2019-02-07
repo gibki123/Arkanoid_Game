@@ -10,13 +10,15 @@ public class UpgradesHandling : MonoBehaviour
     private GameObject paddle;
     private Rigidbody rb;
     private float rotationSpeed = 100f;
+    private Vector3 initialPaddleSize;
+    private Vector3 upgradedPaddleSize;
 
     public static UpgradesHandling Instance;
-
     public static bool forceUpgrade;
     public static bool widthUpgrade;
     public static bool paddleCollided;
     public static bool stickUpgrade;
+    public static float forceSum;
 
 
     private void Awake()
@@ -28,6 +30,8 @@ public class UpgradesHandling : MonoBehaviour
         directionalArrow.SetActive(false);
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         paddle = GameObject.FindGameObjectWithTag("racket");
+        initialPaddleSize = paddle.transform.localScale;
+        upgradedPaddleSize = new Vector3(5, 0.15f, 0);
         rb = GetComponent<Rigidbody>();
         paddleCollided = false;
         forceUpgrade = false;
@@ -73,15 +77,34 @@ public class UpgradesHandling : MonoBehaviour
         if(stickUpgrade == true && paddleCollided == true)
         {
             directionalArrow.SetActive(true);
-            Quaternion rotation = Quaternion.Euler(0,0,Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime);
-            directionalArrow.transform.RotateAround(transform.position, Vector3.forward,rotation.ToEuler());
-            float euler = directionalArrow.transform.eulerAngles.z;
-            euler = Mathf.Clamp(rotation, -60, 60);
+            float rotation = Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime;
+            //Debug.Log(directionalArrow.transform.rotation.z);
+            Debug.Log(directionalArrow.transform.rotation.eulerAngles);
+            //Debug.Log(directionalArrow.transform.rotation);
+            directionalArrow.transform.RotateAround(transform.position, Vector3.forward, rotation);
             transform.SetParent(paddle.transform);
             if (Input.GetButtonDown("Fire1"))
             {
-                float zRotation = directionalArrow.transform.rotation.z;
-                
+                stickUpgrade = false;
+                paddleCollided = false;
+                rb.isKinematic = false;
+                transform.parent = null;
+                directionalArrow.SetActive(false);
+                rb.velocity = new Vector3(0, 0, 0);
+                float eulerAngleZ = directionalArrow.transform.rotation.eulerAngles.z;
+                if(eulerAngleZ>=0&& eulerAngleZ <= 90)
+                {
+                    float sideForcePercentage = eulerAngleZ / 90;
+                    float sideForce = sideForcePercentage * forceSum;
+                    rb.AddForce(-sideForce, forceSum - sideForce, 0);
+                }
+                if (eulerAngleZ >= 270)
+                {
+                    eulerAngleZ -= 270;
+                    float yForcePercentage = eulerAngleZ / 90;
+                    float yForce = yForcePercentage * forceSum;
+                    rb.AddForce(forceSum - yForce,yForce, 0);
+                }
             }
         }
     }
@@ -121,20 +144,37 @@ public class UpgradesHandling : MonoBehaviour
 
     public IEnumerator WidthUpgrade()
     {
-        paddle.transform.localScale = new Vector3(5, 0.15f, 1);
+        if(transform.parent != null)
+        {
+            transform.parent = null;
+            paddle.transform.localScale = upgradedPaddleSize;
+            transform.SetParent(paddle.transform);
+        }  
         yield return new WaitForSeconds(10);
-        paddle.transform.localScale = new Vector3(3.5f, 0.15f, 1);
+        paddle.transform.localScale = initialPaddleSize;
         paddle.GetComponent<Renderer>().material.color = Color.white;
     }
 
+    public void stickUpgradeEnd()
+    {
+        stickUpgrade = false;
+        directionalArrow.SetActive(false);
+    }
+
     public void WidthUpgradeEnd()
-    {       
-        paddle.transform.localScale = new Vector3(3.5f, 0.15f, 1);
+    {
+        if (transform.parent != null)
+        {
+            transform.parent = null;
+            paddle.transform.localScale = initialPaddleSize;
+            transform.SetParent(paddle.transform);
+        }   
     }
 
     public void AllUpgradesEnd()
     {
         ForceUpgradeEnd();
         WidthUpgradeEnd();
+        stickUpgradeEnd();
     }
 }

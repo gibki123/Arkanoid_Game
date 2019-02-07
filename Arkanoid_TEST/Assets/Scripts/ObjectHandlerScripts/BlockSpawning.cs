@@ -13,6 +13,7 @@ public class BlockSpawning : MonoBehaviour {
     private Vector3 vec;
 
     public static List<GameObject> spawnedBlocks;
+    public static bool endlessLevelling;
 
     private void Awake()
     {
@@ -23,23 +24,30 @@ public class BlockSpawning : MonoBehaviour {
     }
 
 	private void Start ()
-    {       
-        for(int i = 0;i<13; i++)
-        {          
-            for(int j = 0; j<5;j++)
-            {
-                spawnedBlocks.Add(Pooling.Instance.SpawnFromPool("block", vec));
-                vec.y -= 0.5f;       
+    {  
+        if(endlessLevelling)
+        {
+            for(int i = 0;i<13; i++)
+            {          
+                for(int j = 0; j<5;j++)
+                {
+                    spawnedBlocks.Add(Pooling.Instance.SpawnFromPool("block", vec));
+                    vec.y -= 0.5f;       
+                }
+                vec.y = 5.5f;
+                vec.x += 1.5f;
             }
-            vec.y = 5.5f;
-            vec.x += 1.5f;
+            vec = new Vector3(positionX, positionY, 0);
         }
-        vec = new Vector3(positionX, positionY, 0);
+        else
+        {
+           spawnedBlocks = LoadSceneFromPicture.Instance.LoadLevel();
+        }       
     }
 
     private void Update()
     {
-        if (BallCollision.collisionCounter == collisionQunatity)
+        if (BallCollision.collisionCounter == collisionQunatity&& endlessLevelling == true)
         {
             MoveDownBlocks();
             SpawnNewBlocks();

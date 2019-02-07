@@ -124,14 +124,13 @@ GameObject:
   - component: {fileID: 364574701}
   - component: {fileID: 364574700}
   - component: {fileID: 364574699}
-  - component: {fileID: 364574702}
   m_Layer: 0
   m_Name: DirecitonArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &364574698
 Transform:
   m_ObjectHideFlags: 0
@@ -204,23 +203,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364574697}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1818360609 &364574702
-RotationConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364574697}
-  m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 60}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 0
-  m_IsLocked: 0
-  m_Sources: []
 --- !u!1 &431156070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5241,6 +5223,7 @@ GameObject:
   - component: {fileID: 860193331}
   - component: {fileID: 860193330}
   - component: {fileID: 860193332}
+  - component: {fileID: 860193333}
   m_Layer: 0
   m_Name: ObjectHandler
   m_TagString: Untagged
@@ -5285,6 +5268,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ae8c2d59d3e1b9448a379799ede11bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &860193333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860193329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caefd89146a4d1c4693253aeb52218fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &937861787
@@ -5416,7 +5411,7 @@ PrefabInstance:
     - target: {fileID: 6645488970225731972, guid: d5da89c86d0954c4391aef345a646e5b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6645488970225731974, guid: d5da89c86d0954c4391aef345a646e5b,
         type: 3}
@@ -5714,7 +5709,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3443396, g: 1, b: 0.47290054, a: 0}
+  m_BackGroundColor: {r: 0.54509807, g: 0.76470596, b: 0.2901961, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -6037,7 +6032,7 @@ PrefabInstance:
     - target: {fileID: 8721938051615021973, guid: c826504720f1080459315556f1d25b7b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2265958
+      value: 0.19827133
       objectReference: {fileID: 0}
     - target: {fileID: 8721938051615021973, guid: c826504720f1080459315556f1d25b7b,
         type: 3}
@@ -6052,12 +6047,12 @@ PrefabInstance:
     - target: {fileID: 347241612009866411, guid: c826504720f1080459315556f1d25b7b,
         type: 3}
       propertyPath: addedForceMin
-      value: 400
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 347241612009866411, guid: c826504720f1080459315556f1d25b7b,
         type: 3}
       propertyPath: addedForceMax
-      value: 800
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 990969724156322416, guid: c826504720f1080459315556f1d25b7b,
         type: 3}

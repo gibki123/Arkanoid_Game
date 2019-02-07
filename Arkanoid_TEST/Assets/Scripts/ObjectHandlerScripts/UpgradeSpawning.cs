@@ -19,21 +19,12 @@ public class UpgradeSpawning : MonoBehaviour
     {
         spawningCoroutine = false;
         upgradeObj = null;
-        minTimeSpawn = 5;
-        maxTimeSpawn = 10;
+        minTimeSpawn = 10;
+        maxTimeSpawn = 20;
     }
 
     private void Update()
     {
-        if (upgradeObj != null && upgradeObj.transform.position.y <= -10f)
-        {
-            Pooling.Instance.DisableFromPool(upgradeObj);
-        }
-        if(BallCollision.firstBallShot == true && spawningCoroutine == true)
-        {
-            spawningCoroutine = false;
-            StopCoroutine(SphereSpawn());            
-        }
         if (BallCollision.firstBallShot == false && spawningCoroutine == false)
         {
             spawningCoroutine = true;
@@ -46,7 +37,7 @@ public class UpgradeSpawning : MonoBehaviour
         while(true)
         {
             int time_for_spawn = Random.Range(minTimeSpawn, maxTimeSpawn + 1);
-            int random = Random.Range(3,4);
+            int random = Random.Range(1,2);
             yield return new WaitForSeconds(time_for_spawn);
             Upgrades upgrade = (Upgrades)random;
             switch(upgrade)

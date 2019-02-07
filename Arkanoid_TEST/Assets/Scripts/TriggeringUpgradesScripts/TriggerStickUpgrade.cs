@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class TriggerStickUpgrade : MonoBehaviour
 {
+    private void Update()
+    {
+        if (transform.position.y < -10)
+        {
+            Pooling.Instance.DisableFromPool(gameObject);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "racket")

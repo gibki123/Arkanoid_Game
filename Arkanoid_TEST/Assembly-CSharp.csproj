@@ -65,9 +65,9 @@
     <Compile Include="Assets\Scripts\BallScripts\LiveLoosing.cs" />
     <Compile Include="Assets\Scripts\BallScripts\UpgradesHandling.cs" />
     <Compile Include="Assets\Scripts\BlockScripts\DisablingBlock.cs" />
-    <Compile Include="Assets\Scripts\ButtonScripts\NoButtonScript.cs" />
-    <Compile Include="Assets\Scripts\ButtonScripts\YesButtonScript.cs" />
+    <Compile Include="Assets\Scripts\ButtonScripts\LoadingScenes.cs" />
     <Compile Include="Assets\Scripts\CameraScripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\LoadSceneFromPicture.cs" />
     <Compile Include="Assets\Scripts\ObjectHandlerScripts\BlockSpawning.cs" />
     <Compile Include="Assets\Scripts\ObjectHandlerScripts\UpgradeSpawning.cs" />
     <Compile Include="Assets\Scripts\PaddleScripts\Movement.cs" />
