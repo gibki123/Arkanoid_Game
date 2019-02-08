@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockSpawning : MonoBehaviour {
 
-    private int collisionQunatity;
+    private int collisionQuantity;
     private float blocksDistance;
     private float positionX = -9;
     private float positionY = 5.5f;
@@ -19,7 +19,7 @@ public class BlockSpawning : MonoBehaviour {
     {
         vec = new Vector3(positionX,positionY, 0);
         spawnedBlocks = new List<GameObject>();
-        collisionQunatity = 5;
+        collisionQuantity = 5;
         blocksDistance = -0.5f;
     }
 
@@ -47,7 +47,7 @@ public class BlockSpawning : MonoBehaviour {
 
     private void Update()
     {
-        if (BallCollision.collisionCounter == collisionQunatity&& endlessLevelling == true)
+        if (BallCollision.collisionCounter == collisionQuantity&& endlessLevelling == true)
         {
             MoveDownBlocks();
             SpawnNewBlocks();

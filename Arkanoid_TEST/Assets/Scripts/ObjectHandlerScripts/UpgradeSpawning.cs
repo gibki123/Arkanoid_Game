@@ -19,8 +19,8 @@ public class UpgradeSpawning : MonoBehaviour
     {
         spawningCoroutine = false;
         upgradeObj = null;
-        minTimeSpawn = 10;
-        maxTimeSpawn = 20;
+        minTimeSpawn = 5;
+        maxTimeSpawn = 10;
     }
 
     private void Update()
@@ -37,7 +37,7 @@ public class UpgradeSpawning : MonoBehaviour
         while(true)
         {
             int time_for_spawn = Random.Range(minTimeSpawn, maxTimeSpawn + 1);
-            int random = Random.Range(1,2);
+            int random = Random.Range(1,4);
             yield return new WaitForSeconds(time_for_spawn);
             Upgrades upgrade = (Upgrades)random;
             switch(upgrade)

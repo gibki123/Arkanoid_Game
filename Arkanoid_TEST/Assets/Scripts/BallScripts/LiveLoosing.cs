@@ -31,9 +31,13 @@ public class LiveLoosing : MonoBehaviour
             UpgradesHandling.Instance.AllUpgradesEnd();
             BallCollision.firstBallShot = true;          
         }
-        if(numberOfLives == 0)
+        if(numberOfLives == 0 && BlockSpawning.endlessLevelling == false)
         {
             SceneManager.LoadScene("GameOver");
+        }
+        if (numberOfLives == 0 && BlockSpawning.endlessLevelling == true)
+        {
+            SceneManager.LoadScene("YourScore");
         }
     }
 

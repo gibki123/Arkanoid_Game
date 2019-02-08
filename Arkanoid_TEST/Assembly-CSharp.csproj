@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\ObjectHandlerScripts\UpgradeSpawning.cs" />
     <Compile Include="Assets\Scripts\PaddleScripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PoolerScripts\Pooling.cs" />
+    <Compile Include="Assets\Scripts\ScoreHandling.cs" />
     <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerForceUpgrade.cs" />
     <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerStickUpgrade.cs" />
     <Compile Include="Assets\Scripts\TriggeringUpgradesScripts\TriggerWidthUpgrade.cs" />

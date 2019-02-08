@@ -12,6 +12,7 @@ public class UpgradesHandling : MonoBehaviour
     private float rotationSpeed = 100f;
     private Vector3 initialPaddleSize;
     private Vector3 upgradedPaddleSize;
+    private float maxAngle = 75f;
 
     public static UpgradesHandling Instance;
     public static bool forceUpgrade;
@@ -19,6 +20,8 @@ public class UpgradesHandling : MonoBehaviour
     public static bool paddleCollided;
     public static bool stickUpgrade;
     public static float forceSum;
+
+
 
 
     private void Awake()
@@ -81,7 +84,20 @@ public class UpgradesHandling : MonoBehaviour
             //Debug.Log(directionalArrow.transform.rotation.z);
             Debug.Log(directionalArrow.transform.rotation.eulerAngles);
             //Debug.Log(directionalArrow.transform.rotation);
-            directionalArrow.transform.RotateAround(transform.position, Vector3.forward, rotation);
+            Vector3 eulerAngles = directionalArrow.transform.rotation.eulerAngles;
+            if (eulerAngles.z <=maxAngle || eulerAngles.z >=360 - maxAngle)
+            {
+                directionalArrow.transform.RotateAround(transform.position, Vector3.forward, rotation);
+            }
+            if (eulerAngles.z > maxAngle && eulerAngles.z < 100 && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+            {
+                directionalArrow.transform.RotateAround(transform.position, Vector3.forward, rotation);
+            }
+            if (eulerAngles.z < 360-maxAngle && eulerAngles.z > 200 && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)))
+            {
+                directionalArrow.transform.RotateAround(transform.position, Vector3.forward, rotation);
+            }
+
             transform.SetParent(paddle.transform);
             if (Input.GetButtonDown("Fire1"))
             {

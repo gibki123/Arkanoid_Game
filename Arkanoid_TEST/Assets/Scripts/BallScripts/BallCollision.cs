@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BallCollision : MonoBehaviour
 {
@@ -13,7 +16,7 @@ public class BallCollision : MonoBehaviour
     [SerializeField]
     private Text scoreText;
 
-    private static double score;
+    public static double score;
 
     [SerializeField]
     [Range(0, 1000)]
@@ -27,6 +30,7 @@ public class BallCollision : MonoBehaviour
 
     private Vector3 paddleDimensions;
     private Vector3 paddlePosition;
+    private float particleTime = 1f;
 
     private void Awake()
     {
@@ -47,7 +51,10 @@ public class BallCollision : MonoBehaviour
             rb.isKinematic = false;
             rb.AddForce(new Vector3((addedForceMax + addedForceMin)-force,force, 0));        
         }
-        Vector3 velocity = rb.velocity;
+        if (BlockSpawning.endlessLevelling == false && LoadSceneFromPicture.blockQuantity == 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -80,6 +87,11 @@ public class BallCollision : MonoBehaviour
             audio.Play();
             AddScore();
             Pooling.Instance.DisableFromPool(collision.gameObject);
+            StartCoroutine(TurnOnParticle(collision.gameObject));
+            if(BlockSpawning.endlessLevelling == false)
+            {
+               LoadSceneFromPicture.blockQuantity--;
+            }     
         }
     }
 
@@ -90,6 +102,11 @@ public class BallCollision : MonoBehaviour
             AddScore();
             audio.Play();
             Pooling.Instance.DisableFromPool(other.gameObject);
+            StartCoroutine(TurnOnParticle(other.gameObject));
+            if (BlockSpawning.endlessLevelling == false)
+            {
+                LoadSceneFromPicture.blockQuantity--;
+            }
         }
     }
 
@@ -109,5 +126,14 @@ public class BallCollision : MonoBehaviour
             scoreText.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 235);
         }
         scoreText.text = "Score: " + score;
+    }
+
+    private IEnumerator TurnOnParticle(GameObject obj)
+    {
+        Vector3 spawnPosition = obj.transform.position;
+        spawnPosition.y -= 0.5f;
+        GameObject particles = Pooling.Instance.SpawnFromPool("particleSystem",spawnPosition);
+        yield return new WaitForSeconds(particleTime);
+        Pooling.Instance.DisableFromPool(particles);
     }
 }

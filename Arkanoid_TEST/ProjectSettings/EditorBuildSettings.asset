@@ -7,11 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/StartGame.unity
-    guid: d86b386c69f071841830af6de7025814
+    guid: 034db10eef376d24bb02d0f673e0b418
   - enabled: 1
     path: Assets/Scenes/ActualGame.unity
     guid: f992160cbcd5c62409746df2a529d733
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 58c556ef5c138fb4c97696804b3c56c0
+  - enabled: 1
+    path: Assets/Scenes/YouWon.unity
+    guid: d86b386c69f071841830af6de7025814
+  - enabled: 1
+    path: Assets/Scenes/YourScore.unity
+    guid: 42212cc7cd315f04c97757b80e8af9c8
   m_configObjects: {}
